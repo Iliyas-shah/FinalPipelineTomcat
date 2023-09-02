@@ -8,17 +8,19 @@ node(){
 	stage('checkout code'){
 		checkout scm
 	}
-	stage('Build Automation'){
-		sh """
-			ls -lart
-			mvn clean install
-			ls -lart target
+	// stage('Build Automation'){
+	// 	sh """
+	// 		ls -lart
+	// 		mvn clean install
+	// 		ls -lart target
 
-		"""
-	}
-	// stage('Build'){
-		// sh "mvn clean install -Dmaven.test.skip=true"
+	// 	"""
 	// }
+	stage('Build'){
+		steps{
+		 bat 'mvn clean install'
+		}
+	}
 	// stage('Code Scan'){
 	// 	withSonarQubeEnv(credentialsId: 'SonarQubeCreds') {
 	// 		sh "${sonarHome}/bin/sonar-scanner"
